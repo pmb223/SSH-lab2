@@ -47,7 +47,7 @@ et-xmlfile==1.0.1
 ewmh==0.1.6
 fasteners==0.14.1
 filelock==3.6.0
-Flask==2.0.1
+Flask==3.0.0
 flatbuffers===1.12.1-git20200711.33e2d80-dfsg1-0.6
 fonttools==4.29.1
 fs==2.4.12
