@@ -126,7 +126,6 @@ platformdirs==2.5.1
 pluggy==0.13.0
 ply==3.11
 protobuf==3.12.4
-psycopg2-binary~=2.9.6
 psutil==5.9.0
 ptyprocess==0.7.0
 py==1.10.0
