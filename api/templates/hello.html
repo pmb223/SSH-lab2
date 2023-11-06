@@ -3,6 +3,18 @@
   <body>
     <h1>Hello {{ name }}!</h1>
     <p>Name: {{ name }}</p>
-    <p>Your repositories: {{ ', '.join(rnames) + "\n" + "hello"}} </p>
+    <p>Your repositories: </p>
+    <table>
+      <tr>
+	<td>Name</td>
+	<td>URL</td>
+      </tr>
+      {% for i in range(rnames|length) %}
+      <tr>
+	<td>{{ rnames[i] }}</td>
+	<td>{{ rurl[i] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
   </body>
 </html>
