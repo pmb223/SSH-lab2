@@ -27,40 +27,27 @@ def submit():
             else:
                 formatted_date = 'N/A'
 
-            # Get the latest commit for this repo
+            # Get the number of commits for this repo
             commits_url = f"https://api.github.com/repos/{input_name}/{name}/commits"
             commits_response = requests.get(commits_url)
-            latest_commit_hash = 'N/A'
-            latest_commit_author = 'N/A'
-            latest_commit_date = 'N/A'
-            latest_commit_message = 'N/A'
+            commits_count = 'N/A'  # Default if commits can't be fetched
             if commits_response.status_code == 200:
                 commits_data = commits_response.json()
-                if commits_data:  # Check if there is at least one commit
-                    latest_commit = commits_data[0]  # Get the latest commit
-                    latest_commit_hash = latest_commit.get('sha', 'N/A')
-                    if 'commit' in latest_commit:
-                        latest_commit_author = latest_commit['commit']['author']['name']
-                        latest_commit_date = latest_commit['commit']['author']['date']
-                        latest_commit_date = datetime.strptime(latest_commit_date, "%Y-%m-%dT%H:%M:%SZ")
-                        latest_commit_date = latest_commit_date.strftime("%B %d, %Y %H:%M:%S")
-                        latest_commit_message = latest_commit['commit']['message']
-
+                commits_count = len(commits_data)
+            last_commit = commits_data[0]
             repo_info = {
                 'name': name,
                 'url': url,
                 'updated_at': formatted_date,
-                'latest_commit_hash': latest_commit_hash,
-                'latest_commit_author': latest_commit_author,
-                'latest_commit_date': latest_commit_date,
-                'latest_commit_message': latest_commit_message
+                'commits_count': commits_count
+                'last_commit_hash': last_commit["sha"][:7]
+                'last_commit_author': last_commit["
             }
             repos_info.append(repo_info)
     else:
-        repos_info = [{'name': "Account not found", 'url': '#', 'updated_at': 'N/A', 'latest_commit': {}}]
+        repos_info = [{'name': "Account not found", 'url': '#', 'updated_at': 'N/A', 'commits_count': 'N/A'}]
 
     return render_template("hello.html", name=input_name, repos_info=repos_info)
 
 if __name__ == "__main__":
     app.run(debug=True)
-
