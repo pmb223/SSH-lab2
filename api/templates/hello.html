@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <h1>Hello {{ name }}!</h1>
-    <p>Name: {{ name }}</p>
-    <p>Your repositories: </p>
-    <table>
-      <tr>
-	<td>Name</td>
-	<td>URL</td>
-  <td>Last updated</td>
-      </tr>
-      {% for i in range(rnames|length) %}
-      <tr>
-	<td>{{ rnames[i] }}</td>
-	<td>{{ rurls[i] }}</td>
-  <td>{{ rupdated[i]}}</td>
-      </tr>
-      {% endfor %}
-    </table>
-  </body>
+<body>
+  <h1>Hello {{ name }}!</h1>
+  <p>Name: {{ name }}</p>
+  <p>Your repositories:</p>
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>URL</td>
+      <td>Last updated</td>
+      <td>Commit Count</td>
+    </tr>
+    {% for repo in repos_info %}
+    <tr>
+      <td>{{ repo.name }}</td>
+      <td><a href="{{ repo.url }}">{{ repo.name }}</a></td>
+      <td>{{ repo.updated_at }}</td>
+      <td>{{ repo.commits_count }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
 </html>
