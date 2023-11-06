@@ -59,7 +59,10 @@ def submit():
     else:
         repos_info = [{'name': "Account not found", 'url': '#', 'updated_at': 'N/A', 'latest_commit': {}}]
 
-    return render_template("hello.html", name=input_name, repos_info=repos_info)
+    joke_response = requests.get("https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit")
+    joke_data = joke_response.json()
+    joke = joke_data["joke"]
+    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke)
 
 if __name__ == "__main__":
     app.run(debug=True)
