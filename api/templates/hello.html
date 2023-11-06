@@ -19,10 +19,10 @@
       <td>{{ repo.name }}</td>
       <td><a href="{{ repo.url }}">{{ repo.name }}</a></td>
       <td>{{ repo.updated_at }}</td>
-      <td>{{ repo.latest_commit.hash }}</td>
-      <td>{{ repo.latest_commit.author }}</td>
-      <td>{{ repo.latest_commit.date }}</td>
-      <td>{{ repo.latest_commit.message }}</td>
+      <td>{{ repo.latest_commit_hash }}</td>
+      <td>{{ repo.latest_commit_author }}</td>
+      <td>{{ repo.latest_commit_date }}</td>
+      <td>{{ repo.latest_commit_message }}</td>
     </tr>
     {% endfor %}
   </table>
