@@ -18,7 +18,9 @@ def submit():
         repos = [{"Name", "Account not found"}]
     repo_names = []
     repo_url = []
+    repo_updated_at = []
     for r in repos:
         repo_names.append(r['name'])
         repo_url.append(r['url'])
-    return render_template("hello.html", name=input_name, rnames = repo_names, rurl = repo_url)
+        repo_updated_at.append(r['updated_at'])
+    return render_template("hello.html", name=input_name, rnames = repo_names, rurl = repo_url, rupdated = repo_updated_at)

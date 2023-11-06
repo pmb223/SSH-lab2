@@ -8,11 +8,13 @@
       <tr>
 	<td>Name</td>
 	<td>URL</td>
+  <td>Last updated</td>
       </tr>
       {% for i in range(rnames|length) %}
       <tr>
 	<td>{{ rnames[i] }}</td>
 	<td>{{ rurl[i] }}</td>
+  <td>{{ rupdated[i]}}</td>
       </tr>
       {% endfor %}
     </table>
