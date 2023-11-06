@@ -42,6 +42,8 @@ def submit():
                     if 'commit' in latest_commit:
                         latest_commit_author = latest_commit['commit']['author']['name']
                         latest_commit_date = latest_commit['commit']['author']['date']
+                        latest_commit_date = datetime.strptime(latest_commit_date, "%Y-%m-%dT%H:%M:%SZ")
+                        latest_commit_date = latest_commit_date.strftime("%B %d, %Y %H:%M:%S")
                         latest_commit_message = latest_commit['commit']['message']
 
             repo_info = {
