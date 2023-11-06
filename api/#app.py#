@@ -6,9 +6,7 @@ def hello_world():
     user_ip = request.remote_addr  # Get the user's IP address
     return render_template("index.html", user_ip=user_ip)
 
-@app.route("/form")
-def getForm():
-    return render_template("form.html")
+
 
 @app.route("/submit", methods=["POST"])
 def submit():
