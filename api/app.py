@@ -27,25 +27,38 @@ def submit():
             else:
                 formatted_date = 'N/A'
 
-            # Get the number of commits for this repo
+            # Get the latest commit for this repo
             commits_url = f"https://api.github.com/repos/{input_name}/{name}/commits"
             commits_response = requests.get(commits_url)
-            commits_count = 'N/A'  # Default if commits can't be fetched
+            latest_commit_hash = 'N/A'
+            latest_commit_author = 'N/A'
+            latest_commit_date = 'N/A'
+            latest_commit_message = 'N/A'
             if commits_response.status_code == 200:
                 commits_data = commits_response.json()
-                commits_count = len(commits_data)
+                if commits_data:  # Check if there is at least one commit
+                    latest_commit = commits_data[0]  # Get the latest commit
+                    latest_commit_hash = latest_commit.get('sha', 'N/A')
+                    if 'commit' in latest_commit:
+                        latest_commit_author = latest_commit['commit']['author']['name']
+                        latest_commit_date = latest_commit['commit']['author']['date']
+                        latest_commit_message = latest_commit['commit']['message']
 
             repo_info = {
                 'name': name,
                 'url': url,
                 'updated_at': formatted_date,
-                'commits_count': commits_count
+                'latest_commit_hash': latest_commit_hash,
+                'latest_commit_author': latest_commit_author,
+                'latest_commit_date': latest_commit_date,
+                'latest_commit_message': latest_commit_message
             }
             repos_info.append(repo_info)
     else:
-        repos_info = [{'name': "Account not found", 'url': '#', 'updated_at': 'N/A', 'commits_count': 'N/A'}]
+        repos_info = [{'name': "Account not found", 'url': '#', 'updated_at': 'N/A', 'latest_commit': {}}]
 
     return render_template("hello.html", name=input_name, repos_info=repos_info)
 
 if __name__ == "__main__":
     app.run(debug=True)
+

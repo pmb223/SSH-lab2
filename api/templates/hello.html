@@ -9,14 +9,20 @@
       <td>Name</td>
       <td>URL</td>
       <td>Last updated</td>
-      <td>Commit Count</td>
+      <td>Latest Commit Hash</td>
+      <td>Commit Author</td>
+      <td>Commit Date</td>
+      <td>Commit Message</td>
     </tr>
     {% for repo in repos_info %}
     <tr>
       <td>{{ repo.name }}</td>
       <td><a href="{{ repo.url }}">{{ repo.name }}</a></td>
       <td>{{ repo.updated_at }}</td>
-      <td>{{ repo.commits_count }}</td>
+      <td>{{ repo.latest_commit.hash }}</td>
+      <td>{{ repo.latest_commit.author }}</td>
+      <td>{{ repo.latest_commit.date }}</td>
+      <td>{{ repo.latest_commit.message }}</td>
     </tr>
     {% endfor %}
   </table>
