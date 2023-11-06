@@ -16,7 +16,8 @@ def submit():
     repos_data = repos_response.json()
 
     repos_info = []
-    if repos_response.status_code == 200:
+    code = repos_response.status_code
+    if code == 200:
         for repo in repos_data:
             name = repo.get('name', 'N/A')
             url = repo.get('html_url', '#')
@@ -58,8 +59,20 @@ def submit():
             repos_info.append(repo_info)
     else:
         repos_info = [{'name': "Account not found", 'url': '#', 'updated_at': 'N/A', 'latest_commit': {}}]
-
-    return render_template("hello.html", name=input_name, repos_info=repos_info)
+        if code == 403:
+            repos_info[0]['name'] = "Too many requests. Try again later."
+    joke_response = requests.get("https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit")
+    if joke_response.status_code == 200:
+        joke_data = joke_response.json()
+        if "joke" in joke_data:
+            joke = joke_data["joke"]
+        elif "setup" in joke_data:
+            joke = joke_data["setup"] + " " + joke_data["delivery"]
+        else:
+            joke = "Joke not found."
+    else:
+        joke = "Joke API request failed. Try again later."
+    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke)
 
 if __name__ == "__main__":
     app.run(debug=True)
