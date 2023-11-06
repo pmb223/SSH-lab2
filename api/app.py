@@ -17,6 +17,8 @@ def submit():
     else:
         repos = [{"Name", "Account not found"}]
     repo_names = []
+    repo_url = []
     for r in repos:
         repo_names.append(r['name'])
-    return render_template("hello.html", name=input_name, rnames = repo_names)
+        repo_url.append(r['url'])
+    return render_template("hello.html", name=input_name, rnames = repo_names, rurl = repo_url)
