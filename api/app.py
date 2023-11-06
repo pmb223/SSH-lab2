@@ -15,7 +15,8 @@ def submit():
     if response.status_code == 200:
         repos = response.json() # data returned is a list of ‘repository’ entities
     else:
-        repos = ["Account not found", None]
-    return render_template("hello.html", name=input_name, user_repos = repos)
-
-
+        repos = [{"Name", "Account not found"}]
+    repo_names = []
+    for r in repos:
+        repo_names.append(r['name'])
+    return render_template("hello.html", name=input_name, rnames = repo_names)
