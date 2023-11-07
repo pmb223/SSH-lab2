@@ -16,9 +16,9 @@ def submit():
     api_url = 'https://api.api-ninjas.com/v1/facts?limit={}'.format(limit)
     response = requests.get(api_url, headers={'X-Api-Key': 'gXQBPINhpfnVGodo0mvsVQ==CIUM07hamfCP4WzY'})
     if response.status_code == requests.codes.ok:
-        fortune_data = response.json()
+        fact_data = response.json()
     else:
-        fortune_data = response.status_code
+        fact_data = response.status_code
 
     input_name = request.form.get("name")
     repos_response = requests.get(f"https://api.github.com/users/{input_name}/repos")
@@ -85,7 +85,7 @@ def submit():
     else:
         joke = "Joke API request failed. Try again later."
 
-    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke, fortune=fortune_data)
+    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke, fact=fact _data)
 
 if __name__ == "__main__":
     app.run(debug=True)

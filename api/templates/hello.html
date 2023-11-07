@@ -47,13 +47,12 @@
     <br>
     <p><u>Random programming joke for you</u></p>
     <p> {{ joke }} </p>
-    <p><u>Horoscope for you</u></p>
-    {% if fortune %}
-    <!-- Assuming the API returns a 'message' or similar field with the horoscope -->
-    <p>{{ fortune }}</p>
-  {% else %}
-    <p>No horoscope data available.</p>
-  {% endif %}
+    <p><u>Fun facts for you</u></p>
+    <ul>
+      {% for fact in facts %}
+      <li> {{ fact['fact'] }} </li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
 
