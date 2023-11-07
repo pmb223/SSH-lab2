@@ -12,15 +12,16 @@ def hello_world():
 
 @app.route("/submit", methods=["POST"])
 def submit():
-    url = "https://horoscope-astrology.p.rapidapi.com/dailyphrase"
+    limit = 3
+    api_url = 'https://api.api-ninjas.com/v1/facts?limit={}'.format(limit)
+    response = requests.get(api_url, headers={'X-Api-Key': 'gXQBPINhpfnVGodo0mvsVQ==CIUM07hamfCP4WzY'})
+    if response.status_code == requests.codes.ok:
+        print(response.text)
+    else:
+        print("Error:", response.status_code, response.text)
 
-    headers = {
-        "X-RapidAPI-Key": "cdb411e367mshab75a2a50d9e6e8p1bda66jsn952bb4ecf87f",
-        "X-RapidAPI-Host": "horoscope-astrology.p.rapidapi.com"
-    }   
 
-    # Make the request to the horoscope API
-    horoscope_response = requests.get(url, headers=headers)
+    horoscope_response = requests.get(url)
 
     if horoscope_response.status_code == 200:
         fortune_data = horoscope_response.json()
