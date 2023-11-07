@@ -85,7 +85,7 @@ def submit():
     else:
         joke = "Joke API request failed. Try again later."
 
-    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke, fact=fact_data)
+    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke, fact_data=fact_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
