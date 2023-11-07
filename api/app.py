@@ -18,7 +18,7 @@ def submit():
     # Your horoscope API endpoint with placeholders replaced by form data
     url = f"https://horoscopes-ai.p.rapidapi.com/get_horoscope/{sign}/{period}/general/en"
     headers = {
-        "X-RapidAPI-Key": "YOUR_RAPIDAPI_KEY",
+        "X-RapidAPI-Key": "52cf833554msh77327852c35cc64p1ea18ajsn031f7d059642",
         "X-RapidAPI-Host": "horoscopes-ai.p.rapidapi.com"
     }
 
