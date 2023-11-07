@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    user_ip = request.remote_addr  # Get the user's IP address
+    user_ip = request.remote_addr 
     return render_template("index.html", user_ip=user_ip)
 
 
@@ -40,7 +40,6 @@ def submit():
                 formatted_date = 'N/A'
 
         
-            # Get the latest commit for this repo
             commits_url = f"https://api.github.com/repos/{input_name}/{name}/commits"
             commits_response = requests.get(commits_url)
             latest_commit_hash = 'N/A'
@@ -49,8 +48,8 @@ def submit():
             latest_commit_message = 'N/A'
             if commits_response.status_code == 200:
                 commits_data = commits_response.json()
-                if commits_data:  # Check if there is at least one commit
-                    latest_commit = commits_data[0]  # Get the latest commit
+                if commits_data:  
+                    latest_commit = commits_data[0]  
                     latest_commit_hash = latest_commit.get('sha', 'N/A')
                     if 'commit' in latest_commit:
                         latest_commit_author = latest_commit['commit']['author']['name']
