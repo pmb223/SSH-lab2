@@ -12,16 +12,12 @@ def hello_world():
 
 @app.route("/submit", methods=["POST"])
 def submit():
-    sign = request.form.get('sign')  # Zodiac sign
-    period = request.form.get('period')  # Period (daily, weekly, etc.)
+    url = "https://horoscope-astrology.p.rapidapi.com/dailyphrase"
 
-    # Your horoscope API endpoint with placeholders replaced by form data
-    url = f"https://horoscopes-ai.p.rapidapi.com/get_horoscope/{sign}/{period}/general/en"
     headers = {
-        "X-RapidAPI-Key": 'cdb411e367mshab75a2a50d9e6e8p1bda66jsn952bb4ecf87f',
-        "X-RapidAPI-Host": "horoscopes-ai.p.rapidapi.com",
-        "language":"en" 
-    }
+        "X-RapidAPI-Key": "cdb411e367mshab75a2a50d9e6e8p1bda66jsn952bb4ecf87f",
+        "X-RapidAPI-Host": "horoscope-astrology.p.rapidapi.com"
+    }   
 
     # Make the request to the horoscope API
     horoscope_response = requests.get(url, headers=headers)
