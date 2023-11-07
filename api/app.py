@@ -74,7 +74,25 @@ def submit():
         if code == 403:
             repos_info[0]['name'] = "Too many requests. Try again later."
     joke_response = requests.get("https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit")
-    if joke_response.status_code == 200:
+    if joke_response.s<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello!</h1>
+    
+    <p>This page returns your Github username.</p>
+    
+    <form action="/submit" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <input type="number" id="limit" name="limit">
+      
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+
+tatus_code == 200:
         joke_data = joke_response.json()
         if "joke" in joke_data:
             joke = joke_data["joke"]
@@ -85,7 +103,7 @@ def submit():
     else:
         joke = "Joke API request failed. Try again later."
 
-    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke, fact=fact _data)
+    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke, fact=fact_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
