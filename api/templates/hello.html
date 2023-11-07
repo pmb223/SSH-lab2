@@ -48,6 +48,14 @@
     <p><u>Random programming joke for you</u></p>
     <p> {{ joke }} </p>
     <p><u>Horoscope for you</u></p>
-    <p> {{ fortune_data }} </p>
+    {% if fortune_data %}
+    <!-- Assuming the API returns a 'message' or similar field with the horoscope -->
+    <p>{{ fortune_data['general'] }}</p>
+  {% else %}
+    <p>No horoscope data available.</p>
+  {% endif %}
   </body>
 </html>
+
+
+

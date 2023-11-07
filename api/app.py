@@ -9,26 +9,26 @@ def hello_world():
     user_ip = request.remote_addr  # Get the user's IP address
     return render_template("index.html", user_ip=user_ip)
 
+
 @app.route("/submit", methods=["POST"])
 def submit():
-    url = "https://fortune-cookie.p.rapidapi.com/api/1.0/get_fortune_cookie.php"
+    sign = request.form.get('sign')  # Zodiac sign
+    period = request.form.get('period')  # Period (daily, weekly, etc.)
 
-    payload = { "api_key": "Your Api Key" }
+    # Your horoscope API endpoint with placeholders replaced by form data
+    url = f"https://horoscopes-ai.p.rapidapi.com/get_horoscope/{sign}/{period}/general/en"
     headers = {
-    "content-type": "application/x-www-form-urlencoded",
-    "X-RapidAPI-Key": "52cf833554msh77327852c35cc64p1ea18ajsn031f7d059642",
-    "X-RapidAPI-Host": "fortune-cookie.p.rapidapi.com"
+        "X-RapidAPI-Key": "YOUR_RAPIDAPI_KEY",
+        "X-RapidAPI-Host": "horoscopes-ai.p.rapidapi.com"
     }
 
-    fortune_response = requests.post(url, data=payload, headers=headers)
+    # Make the request to the horoscope API
+    horoscope_response = requests.get(url, headers=headers)
 
-    if fortune_response.status_code == 200:
-        fortune_data = fortune_response.json()
-    else: 
-        fortune_data = fortune_response.status_code
-    input_name = request.form.get("name")
-    repos_response = requests.get(f"https://api.github.com/users/{input_name}/repos")
-    repos_data = repos_response.json()
+    if horoscope_response.status_code == 200:
+        fortune_data = horoscope_response.json()
+    else:
+        fortune_data = "Error: " + str(horoscope_response.status_code)
 
 
 

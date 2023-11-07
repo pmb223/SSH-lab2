@@ -10,7 +10,24 @@
       <input type="text" id="name" name="name">
       <input type="submit" value="Submit">
     </form>
-  </body>
+    <form action="/submit" method="post">
+    <!-- Other form elements... -->
+
+    <label for="sign">Your Zodiac Sign:</label>
+    <select name="sign" id="sign" required>
+      <option value="aries">Aries</option>
+      <option value="taurus">Taurus</option>
+      <!-- Add all other zodiac signs -->
+    </select>
+
+    <label for="period">Period:</label>
+    <select name="period" id="period" required>
+      <option value="daily">Daily</option>
+      <option value="weekly">Weekly</option>
+      <!-- Add other periods if available -->
+    </select>
+
+  <input type="submit" value="Get Horoscope">
+</form>
+</body>
 </html>
-
-
