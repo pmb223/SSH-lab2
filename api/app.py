@@ -12,7 +12,7 @@ def hello_world():
 
 @app.route("/submit", methods=["POST"])
 def submit():
-    limit = 3
+    limit = request.form.get("limit")
     api_url = 'https://api.api-ninjas.com/v1/facts?limit={}'.format(limit)
     response = requests.get(api_url, headers={'X-Api-Key': 'gXQBPINhpfnVGodo0mvsVQ==CIUM07hamfCP4WzY'})
     if response.status_code == requests.codes.ok:
