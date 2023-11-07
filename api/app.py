@@ -11,9 +11,26 @@ def hello_world():
 
 @app.route("/submit", methods=["POST"])
 def submit():
+    url = "https://fortune-cookie.p.rapidapi.com/api/1.0/get_fortune_cookie.php"
+
+    payload = { "api_key": "Your Api Key" }
+    headers = {
+    "content-type": "application/x-www-form-urlencoded",
+    "X-RapidAPI-Key": "52cf833554msh77327852c35cc64p1ea18ajsn031f7d059642",
+    "X-RapidAPI-Host": "fortune-cookie.p.rapidapi.com"
+    }
+
+    fortune_response = requests.post(url, data=payload, headers=headers)
+
+    if fortune_response.status_code == 200:
+        fortune_data = fortune_response.json()
+    else: 
+        fortune_data = fortune_response.status_code
     input_name = request.form.get("name")
     repos_response = requests.get(f"https://api.github.com/users/{input_name}/repos")
     repos_data = repos_response.json()
+
+
 
     repos_info = []
     code = repos_response.status_code
@@ -28,6 +45,7 @@ def submit():
             else:
                 formatted_date = 'N/A'
 
+        
             # Get the latest commit for this repo
             commits_url = f"https://api.github.com/repos/{input_name}/{name}/commits"
             commits_response = requests.get(commits_url)
@@ -72,7 +90,8 @@ def submit():
             joke = "Joke not found."
     else:
         joke = "Joke API request failed. Try again later."
-    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke)
+
+    return render_template("hello.html", name=input_name, repos_info=repos_info, joke=joke, fortune=fortune_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
