@@ -7,10 +7,17 @@
     
     <form action="/submit" method="post">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name">
-      <input type="number" id="limit" name="limit">
+      <input type="text" id="name" name="name"><br><br>
+
+      <label for="limit">Limit:</label>
+      <select name="limit" id="limit">
+        <!-- Generate number options from 1 to 30 -->
+        {% for i in range(1, 31) %}
+        <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select><br><br>
       
-  <input type="submit" value="Submit">
-</form>
-</body>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
 </html>
