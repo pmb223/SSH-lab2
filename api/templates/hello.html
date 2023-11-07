@@ -48,9 +48,9 @@
     <p><u>Random programming joke for you</u></p>
     <p> {{ joke }} </p>
     <p><u>Horoscope for you</u></p>
-    {% if fortune_data %}
+    {% if fortune %}
     <!-- Assuming the API returns a 'message' or similar field with the horoscope -->
-    <p>{{ fortune_data['general'] }}</p>
+    <p>{{ fortune['general'] }}</p>
   {% else %}
     <p>No horoscope data available.</p>
   {% endif %}
