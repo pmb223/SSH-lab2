@@ -20,7 +20,7 @@ def submit():
     headers = {
         "X-RapidAPI-Key": 'cdb411e367mshab75a2a50d9e6e8p1bda66jsn952bb4ecf87f',
         "X-RapidAPI-Host": "horoscopes-ai.p.rapidapi.com",
-        "language":en 
+        "language":"en" 
     }
 
     # Make the request to the horoscope API
