@@ -16,17 +16,10 @@ def submit():
     api_url = 'https://api.api-ninjas.com/v1/facts?limit={}'.format(limit)
     response = requests.get(api_url, headers={'X-Api-Key': 'gXQBPINhpfnVGodo0mvsVQ==CIUM07hamfCP4WzY'})
     if response.status_code == requests.codes.ok:
-        print(response.text)
+        fortune_data = response.json()
     else:
-        print("Error:", response.status_code, response.text)
+        fortune_data = response.status_code
 
-
-    horoscope_response = requests.get(url)
-
-    if horoscope_response.status_code == 200:
-        fortune_data = horoscope_response.json()
-    else:
-        fortune_data = "Error: " + str(horoscope_response.status_code)
     input_name = request.form.get("name")
     repos_response = requests.get(f"https://api.github.com/users/{input_name}/repos")
     repos_data = repos_response.json()
