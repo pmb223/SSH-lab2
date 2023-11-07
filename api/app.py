@@ -29,6 +29,9 @@ def submit():
         fortune_data = horoscope_response.json()
     else:
         fortune_data = "Error: " + str(horoscope_response.status_code)
+    input_name = request.form.get("name")
+    repos_response = requests.get(f"https://api.github.com/users/{input_name}/repos")
+    repos_data = repos_response.json()
 
 
 
